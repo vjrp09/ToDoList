@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+  <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+  <div id="todoList">
+    <h1 align="center">Todo List</h1>
+    <input type="text" id="newTodo" placeholder="New todo...">
+    <button onclick="addTodo()">Add</button>
+    <ul id="todos"></ul>
+  </div>
+  <script>
+    function addTodo() {
+      const todoText = document.getElementById("newTodo").value;
+      if (todoText.trim() === "") {
+        alert("Please enter a todo.");
+        return;
+      }
+      const todoList = document.getElementById("todos");
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${todoText}
+        <button onclick="removeTodo(this)">Delete</button>
+      `;
+      todoList.appendChild(li);
+      // Clear the input field
+      document.getElementById("newTodo").value = "";
+    }
+    function removeTodo(button) {
+      const li = button.parentElement;
+      const todoList = document.getElementById("todos");
+      todoList.removeChild(li);
+    }
+  </script>
+</body>
+</html>
